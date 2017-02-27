@@ -23,7 +23,7 @@ export default class Iphone extends Component {
 	// a call to fetch weather data via wunderground
 	fetchWeatherData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var url = "http://api.wunderground.com/api/c78f1a13d2ca6971/conditions/q/UK/London.json";
+		var url = "http://api.wunderground.com/api/87f91f68951fc9f9/conditions/q/UK/London.json";
 		$.ajax({
 			url: url,
 			dataType: "jsonp",
@@ -42,6 +42,7 @@ export default class Iphone extends Component {
 		// display all weather data
 		return (
 			<div class={ style.container }>
+				<div class={style_iphone.circ}></div>
 				<div class={ style.header }>
 					<div class={ style.city }>{ this.state.locate }</div>
 					<div class={ style.conditions }>{ this.state.cond }</div>
@@ -49,10 +50,12 @@ export default class Iphone extends Component {
 				</div>
 				<div class={ style.details }></div>
 				<div class= { style_iphone.container }> 
-					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData }/ > : null }
+					{ this.state.display ? <Button class={ style_iphone.button } clickFunction={ this.fetchWeatherData }/> : null }
 				</div>
-			</div>
+
+				</div>
 		);
+
 	}
 
 	parseResponse = (parsed_json) => {
@@ -65,6 +68,6 @@ export default class Iphone extends Component {
 			locate: location,
 			temp: temp_c,
 			cond : conditions
-		});      
+		});
 	}
 }
